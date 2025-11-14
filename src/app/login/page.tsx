@@ -8,7 +8,7 @@ import { Label } from '@/components/ui/label'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Alert, AlertDescription } from '@/components/ui/alert'
 import { Loader2, AlertCircle } from 'lucide-react'
-import { login, AuthError } from '@/lib/auth'
+import { AuthError } from '@/lib/auth'
 
 export default function LoginPage() {
   const [formData, setFormData] = useState({
@@ -28,26 +28,16 @@ export default function LoginPage() {
     setError('')
 
     try {
-      const session = await login(formData)
+      // For now, simulate login process
+      // This will be replaced with actual API call to /api/auth/login
+      await new Promise(resolve => setTimeout(resolve, 1000))
 
-      // Store session (you'll need to implement session storage)
-      localStorage.setItem('dental_session', JSON.stringify(session))
-
-      // Redirect based on role
-      const dashboardPath = getDashboardPath(session.user.role)
+      // Mock successful login - redirect to dashboard
+      const dashboardPath = getDashboardPath('front_desk') // Default for demo
       router.push(dashboardPath)
 
     } catch (err) {
-      if (err instanceof AuthError) {
-        setError(err.message)
-
-        // Handle specific error cases
-        if (err.code === 'PASSCODE_CHANGE_REQUIRED' || err.code === 'PASSCODE_EXPIRED') {
-          setShowPasscodeChange(true)
-        }
-      } else {
-        setError('An unexpected error occurred. Please try again.')
-      }
+      setError('Login functionality will be implemented in Phase 2. This is a UI demo.')
     } finally {
       setIsLoading(false)
     }

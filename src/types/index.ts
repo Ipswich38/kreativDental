@@ -32,6 +32,16 @@ export interface User {
   birth_date?: string
   hire_date?: string
   employment_status: 'active' | 'inactive' | 'terminated'
+
+  // Passcode Management
+  passcode_hash: string
+  passcode_changed_at?: string
+  passcode_expires_at?: string
+  must_change_passcode: boolean
+  failed_login_attempts: number
+  locked_until?: string
+
+  // Settings
   avatar_url?: string
   is_active: boolean
   last_login_at?: string

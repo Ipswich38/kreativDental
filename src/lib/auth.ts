@@ -1,5 +1,5 @@
 import bcrypt from 'bcryptjs'
-import { createServerActionClient } from './supabase'
+import { createServerActionClient } from './supabase-server'
 import { User, Tenant } from '@/types'
 
 export interface AuthUser extends User {

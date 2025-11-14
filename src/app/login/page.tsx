@@ -16,6 +16,7 @@ export default function LoginPage() {
     passcode: '',
     tenant_slug: 'happy-teeth' // Default to Happy Teeth for POC
   })
+  const [selectedRole, setSelectedRole] = useState('front_desk')
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState('')
   const [showPasscodeChange, setShowPasscodeChange] = useState(false)
@@ -32,8 +33,8 @@ export default function LoginPage() {
       // This will be replaced with actual API call to /api/auth/login
       await new Promise(resolve => setTimeout(resolve, 1000))
 
-      // Mock successful login - redirect to dashboard
-      const dashboardPath = getDashboardPath('front_desk') // Default for demo
+      // Mock successful login - redirect to dashboard based on selected role
+      const dashboardPath = getDashboardPath(selectedRole)
       router.push(dashboardPath)
 
     } catch (err) {
@@ -51,6 +52,7 @@ export default function LoginPage() {
   const getDashboardPath = (role: string) => {
     switch (role) {
       case 'owner':
+        return '/dashboard/admin'
       case 'admin':
         return '/dashboard/admin'
       case 'dentist':
@@ -168,27 +170,66 @@ export default function LoginPage() {
 
             {/* Demo Users */}
             <div className="mt-6 pt-6 border-t border-gray-100">
-              <p className="text-sm text-gray-600 mb-3 text-center">Demo Users:</p>
+              <p className="text-sm text-gray-600 mb-3 text-center">Quick Demo Access:</p>
               <div className="grid grid-cols-2 gap-2 text-xs">
-                <div className="bg-gray-50 p-2 rounded">
+                <button
+                  type="button"
+                  onClick={() => {
+                    setFormData(prev => ({ ...prev, employee_number: 'DENT001', passcode: '123456' }))
+                    setSelectedRole('owner')
+                  }}
+                  className={`p-2 rounded border ${selectedRole === 'owner' ? 'bg-teal-50 border-teal-300' : 'bg-gray-50 border-gray-200'} hover:bg-teal-50 transition-colors`}
+                >
                   <p className="font-medium">Owner</p>
                   <p className="text-gray-600">DENT001</p>
-                </div>
-                <div className="bg-gray-50 p-2 rounded">
+                </button>
+                <button
+                  type="button"
+                  onClick={() => {
+                    setFormData(prev => ({ ...prev, employee_number: 'STAFF001', passcode: '123456' }))
+                    setSelectedRole('admin')
+                  }}
+                  className={`p-2 rounded border ${selectedRole === 'admin' ? 'bg-blue-50 border-blue-300' : 'bg-gray-50 border-gray-200'} hover:bg-blue-50 transition-colors`}
+                >
                   <p className="font-medium">Admin</p>
                   <p className="text-gray-600">STAFF001</p>
-                </div>
-                <div className="bg-gray-50 p-2 rounded">
+                </button>
+                <button
+                  type="button"
+                  onClick={() => {
+                    setFormData(prev => ({ ...prev, employee_number: 'DENT002', passcode: '123456' }))
+                    setSelectedRole('dentist')
+                  }}
+                  className={`p-2 rounded border ${selectedRole === 'dentist' ? 'bg-teal-50 border-teal-300' : 'bg-gray-50 border-gray-200'} hover:bg-teal-50 transition-colors`}
+                >
                   <p className="font-medium">Dentist</p>
                   <p className="text-gray-600">DENT002</p>
-                </div>
-                <div className="bg-gray-50 p-2 rounded">
+                </button>
+                <button
+                  type="button"
+                  onClick={() => {
+                    setFormData(prev => ({ ...prev, employee_number: 'STAFF002', passcode: '123456' }))
+                    setSelectedRole('front_desk')
+                  }}
+                  className={`p-2 rounded border ${selectedRole === 'front_desk' ? 'bg-purple-50 border-purple-300' : 'bg-gray-50 border-gray-200'} hover:bg-purple-50 transition-colors`}
+                >
                   <p className="font-medium">Front Desk</p>
                   <p className="text-gray-600">STAFF002</p>
-                </div>
+                </button>
               </div>
+              <button
+                type="button"
+                onClick={() => {
+                  setFormData(prev => ({ ...prev, employee_number: 'STAFF004', passcode: '123456' }))
+                  setSelectedRole('dental_assistant')
+                }}
+                className={`w-full mt-2 p-2 rounded border ${selectedRole === 'dental_assistant' ? 'bg-emerald-50 border-emerald-300' : 'bg-gray-50 border-gray-200'} hover:bg-emerald-50 transition-colors text-xs`}
+              >
+                <p className="font-medium">Dental Assistant</p>
+                <p className="text-gray-600">STAFF004</p>
+              </button>
               <p className="text-xs text-gray-500 mt-2 text-center">
-                All demo accounts use passcode: 123456
+                Click any role above to auto-fill credentials
               </p>
             </div>
           </CardContent>

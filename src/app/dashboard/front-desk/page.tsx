@@ -112,35 +112,35 @@ export default function FrontDeskDashboard() {
               {[
                 {
                   time: '09:00 AM',
-                  patient: 'Marjorie Magno',
-                  dentist: 'Dr. Jerome Oh',
-                  service: '2OP/4LC',
+                  patient: 'Juan Dela Cruz',
+                  dentist: 'Dra. Camila Cañares-Price',
+                  service: 'Cleaning',
                   status: 'checked_in',
-                  phone: '+63 917-555-0001'
+                  phone: '+63 917-123-4567'
                 },
                 {
-                  time: '10:00 AM',
-                  patient: 'Bernard Gerona',
+                  time: '10:30 AM',
+                  patient: 'Maria Teresa',
                   dentist: 'Dr. Jerome Oh',
-                  service: 'EXO',
+                  service: 'Extraction',
                   status: 'in_progress',
-                  phone: '+63 917-555-0002'
+                  phone: '+63 917-234-5678'
                 },
                 {
                   time: '02:00 PM',
-                  patient: 'Joan Panganiban',
-                  dentist: 'Dr. Fevi Pio',
-                  service: 'RCT',
+                  patient: 'Carlos Santos',
+                  dentist: 'Dra. Fevi Stella Torralba-Pio',
+                  service: 'Root Canal',
                   status: 'confirmed',
-                  phone: '+63 917-555-0003'
+                  phone: '+63 917-345-6789'
                 },
                 {
                   time: '03:30 PM',
-                  patient: 'Maria Santos',
-                  dentist: 'Dr. Shirley Bayog',
+                  patient: 'Ana Rodriguez',
+                  dentist: 'Dra. Shirley Bayog',
                   service: 'Crown Prep',
                   status: 'pending',
-                  phone: '+63 917-555-0004'
+                  phone: '+63 917-456-7890'
                 }
               ].map((appointment, index) => (
                 <div key={index} className="flex items-center space-x-4 p-3 bg-gray-50 rounded-lg">

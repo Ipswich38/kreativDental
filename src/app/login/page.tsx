@@ -16,7 +16,6 @@ export default function LoginPage() {
     passcode: '',
     tenant_slug: 'happy-teeth' // Default to Happy Teeth for POC
   })
-  const [selectedRole, setSelectedRole] = useState('front_desk')
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState('')
   const [showPasscodeChange, setShowPasscodeChange] = useState(false)
@@ -29,16 +28,31 @@ export default function LoginPage() {
     setError('')
 
     try {
-      // For now, simulate login process
-      // This will be replaced with actual API call to /api/auth/login
-      await new Promise(resolve => setTimeout(resolve, 1000))
+      // Call authentication API
+      const response = await fetch('/api/auth/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          employee_number: formData.employee_number,
+          passcode: formData.passcode
+        })
+      })
 
-      // Mock successful login - redirect to dashboard based on selected role
-      const dashboardPath = getDashboardPath(selectedRole)
-      router.push(dashboardPath)
+      const data = await response.json()
+
+      if (data.success) {
+        // Store user session
+        localStorage.setItem('dental_user', JSON.stringify(data.user))
+
+        // Redirect to appropriate dashboard
+        const dashboardPath = getDashboardPath(data.user.role)
+        router.push(dashboardPath)
+      } else {
+        setError(data.error || 'Login failed')
+      }
 
     } catch (err) {
-      setError('Login functionality will be implemented in Phase 2. This is a UI demo.')
+      setError('Connection error. Please try again.')
     } finally {
       setIsLoading(false)
     }
@@ -146,9 +160,6 @@ export default function LoginPage() {
                   maxLength={6}
                   className="h-12 text-center text-2xl font-mono tracking-wider"
                 />
-                <p className="text-xs text-gray-500">
-                  Default passcode: 123456 (must change after first login)
-                </p>
               </div>
 
               {/* Submit Button */}
@@ -168,77 +179,13 @@ export default function LoginPage() {
               </Button>
             </form>
 
-            {/* Demo Users */}
-            <div className="mt-6 pt-6 border-t border-gray-100">
-              <p className="text-sm text-gray-600 mb-3 text-center">Quick Demo Access:</p>
-              <div className="grid grid-cols-2 gap-2 text-xs">
-                <button
-                  type="button"
-                  onClick={() => {
-                    setFormData(prev => ({ ...prev, employee_number: 'DENT001', passcode: '123456' }))
-                    setSelectedRole('owner')
-                  }}
-                  className={`p-2 rounded border ${selectedRole === 'owner' ? 'bg-teal-50 border-teal-300' : 'bg-gray-50 border-gray-200'} hover:bg-teal-50 transition-colors`}
-                >
-                  <p className="font-medium">Owner</p>
-                  <p className="text-gray-600">DENT001</p>
-                </button>
-                <button
-                  type="button"
-                  onClick={() => {
-                    setFormData(prev => ({ ...prev, employee_number: 'STAFF001', passcode: '123456' }))
-                    setSelectedRole('admin')
-                  }}
-                  className={`p-2 rounded border ${selectedRole === 'admin' ? 'bg-blue-50 border-blue-300' : 'bg-gray-50 border-gray-200'} hover:bg-blue-50 transition-colors`}
-                >
-                  <p className="font-medium">Admin</p>
-                  <p className="text-gray-600">STAFF001</p>
-                </button>
-                <button
-                  type="button"
-                  onClick={() => {
-                    setFormData(prev => ({ ...prev, employee_number: 'DENT002', passcode: '123456' }))
-                    setSelectedRole('dentist')
-                  }}
-                  className={`p-2 rounded border ${selectedRole === 'dentist' ? 'bg-teal-50 border-teal-300' : 'bg-gray-50 border-gray-200'} hover:bg-teal-50 transition-colors`}
-                >
-                  <p className="font-medium">Dentist</p>
-                  <p className="text-gray-600">DENT002</p>
-                </button>
-                <button
-                  type="button"
-                  onClick={() => {
-                    setFormData(prev => ({ ...prev, employee_number: 'STAFF002', passcode: '123456' }))
-                    setSelectedRole('front_desk')
-                  }}
-                  className={`p-2 rounded border ${selectedRole === 'front_desk' ? 'bg-purple-50 border-purple-300' : 'bg-gray-50 border-gray-200'} hover:bg-purple-50 transition-colors`}
-                >
-                  <p className="font-medium">Front Desk</p>
-                  <p className="text-gray-600">STAFF002</p>
-                </button>
-              </div>
-              <button
-                type="button"
-                onClick={() => {
-                  setFormData(prev => ({ ...prev, employee_number: 'STAFF004', passcode: '123456' }))
-                  setSelectedRole('dental_assistant')
-                }}
-                className={`w-full mt-2 p-2 rounded border ${selectedRole === 'dental_assistant' ? 'bg-emerald-50 border-emerald-300' : 'bg-gray-50 border-gray-200'} hover:bg-emerald-50 transition-colors text-xs`}
-              >
-                <p className="font-medium">Dental Assistant</p>
-                <p className="text-gray-600">STAFF004</p>
-              </button>
-              <p className="text-xs text-gray-500 mt-2 text-center">
-                Click any role above to auto-fill credentials
-              </p>
-            </div>
           </CardContent>
         </Card>
 
         {/* Footer */}
         <div className="text-center text-sm text-gray-500">
-          <p>© 2024 KreativDental. All rights reserved.</p>
-          <p>Need help? Contact your administrator.</p>
+          <p>© 2024 Happy Teeth Dental Clinic. All rights reserved.</p>
+          <p>Need help? Contact Dra. Camila at +63 917-123-4567</p>
         </div>
       </div>
     </div>

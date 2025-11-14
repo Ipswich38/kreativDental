@@ -110,32 +110,32 @@ export default function DashboardPage() {
               {[
                 {
                   time: '09:00 AM',
-                  patient: 'Marjorie Magno',
-                  dentist: 'Dr. Jerome Oh',
-                  service: '2OP/4LC',
+                  patient: 'Juan Dela Cruz',
+                  dentist: 'Dra. Camila Cañares-Price',
+                  service: 'Cleaning',
                   room: 'Room 1',
                   status: 'completed'
                 },
                 {
-                  time: '10:00 AM',
-                  patient: 'Bernard Gerona',
+                  time: '10:30 AM',
+                  patient: 'Maria Teresa',
                   dentist: 'Dr. Jerome Oh',
-                  service: 'EXO',
+                  service: 'Extraction',
                   room: 'Room 1',
                   status: 'completed'
                 },
                 {
                   time: '02:00 PM',
-                  patient: 'Joan Panganiban',
-                  dentist: 'Dr. Fevi Pio',
-                  service: 'RCT',
+                  patient: 'Carlos Santos',
+                  dentist: 'Dra. Fevi Stella Torralba-Pio',
+                  service: 'Root Canal',
                   room: 'Room 2',
                   status: 'in_progress'
                 },
                 {
                   time: '03:30 PM',
-                  patient: 'Maria Santos',
-                  dentist: 'Dr. Shirley Bayog',
+                  patient: 'Ana Rodriguez',
+                  dentist: 'Dra. Shirley Bayog',
                   service: 'Crown Prep',
                   room: 'Room 1',
                   status: 'scheduled'

@@ -112,29 +112,29 @@ export default function AssistantDashboard() {
               {[
                 {
                   time: '09:00 AM',
-                  patient: 'Marjorie Magno',
-                  dentist: 'Dr. Jerome Oh',
-                  procedure: '2OP/4LC',
+                  patient: 'Juan Dela Cruz',
+                  dentist: 'Dra. Camila Cañares-Price',
+                  procedure: 'Cleaning & Polishing',
                   status: 'completed'
                 },
                 {
-                  time: '10:00 AM',
-                  patient: 'Bernard Gerona',
+                  time: '10:30 AM',
+                  patient: 'Maria Teresa',
                   dentist: 'Dr. Jerome Oh',
-                  procedure: 'Simple Extraction',
+                  procedure: 'Tooth Extraction',
                   status: 'completed'
                 },
                 {
                   time: '02:00 PM',
-                  patient: 'Joan Panganiban',
-                  dentist: 'Dr. Fevi Pio',
+                  patient: 'Carlos Santos',
+                  dentist: 'Dra. Fevi Stella Torralba-Pio',
                   procedure: 'Root Canal Treatment',
                   status: 'in_progress'
                 },
                 {
                   time: '03:30 PM',
-                  patient: 'Maria Santos',
-                  dentist: 'Dr. Shirley Bayog',
+                  patient: 'Ana Rodriguez',
+                  dentist: 'Dra. Shirley Bayog',
                   procedure: 'Crown Preparation',
                   status: 'scheduled'
                 }

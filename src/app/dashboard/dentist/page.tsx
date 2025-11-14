@@ -142,31 +142,31 @@ export default function DentistDashboard() {
               {[
                 {
                   time: '09:00 AM',
-                  patient: 'Marjorie Magno',
-                  service: '2OP/4LC',
+                  patient: 'Juan Dela Cruz',
+                  service: 'Cleaning',
                   room: 'Room 1',
                   status: 'completed',
-                  revenue: '₱5,000'
+                  revenue: '₱2,500'
                 },
                 {
-                  time: '10:00 AM',
-                  patient: 'Bernard Gerona',
-                  service: 'EXO',
+                  time: '10:30 AM',
+                  patient: 'Maria Teresa',
+                  service: 'Extraction',
                   room: 'Room 1',
                   status: 'completed',
                   revenue: '₱3,000'
                 },
                 {
                   time: '02:00 PM',
-                  patient: 'Joan Panganiban',
-                  service: 'RCT',
+                  patient: 'Carlos Santos',
+                  service: 'Root Canal',
                   room: 'Room 2',
                   status: 'in_progress',
                   revenue: '₱8,000'
                 },
                 {
                   time: '03:30 PM',
-                  patient: 'Maria Santos',
+                  patient: 'Ana Rodriguez',
                   service: 'Crown Prep',
                   room: 'Room 1',
                   status: 'scheduled',
